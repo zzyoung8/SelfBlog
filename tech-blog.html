@@ -42,133 +42,28 @@
             <div class="content-wrapper">
                 <main class="articles">
                     <div class="filter-bar">
-                        <div class="search-box">
-                            <input type="text" id="search-input" placeholder="搜索文章...">
-                            <button id="search-btn"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div class="filter-tags">
-                            <button class="tag active" data-tag="all">全部</button>
-                            <button class="tag" data-tag="java">Java</button>
-                            <button class="tag" data-tag="spring">Spring</button>
-                            <button class="tag" data-tag="redis">Redis</button>
-                            <button class="tag" data-tag="rag">RAG/LLM</button>
-                        </div>
+                        <form class="blog-search-form">
+                            <div class="search-box">
+                                <input type="text" id="blog-search" placeholder="搜索文章...">
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                        <p class="result-count" style="display: none;">找到 0 篇文章</p>
                     </div>
 
-                    <div class="article-grid">
-                        <!-- Article 1 -->
-                        <article class="article-card" data-tags="java,spring">
-                            <div class="article-img">
-                                <img src="images/blog/spring-boot.jpg" alt="Spring Boot 文章">
-                            </div>
-                            <div class="article-meta">
-                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-10-15</span>
-                                <span class="read-time"><i class="far fa-clock"></i> 10 分钟阅读</span>
-                            </div>
-                            <h2 class="article-title">Spring Boot 实现分布式系统的最佳实践</h2>
-                            <p class="article-excerpt">本文将介绍如何使用Spring Boot构建高性能、可扩展的分布式系统，包括服务注册与发现、负载均衡、熔断机制等关键技术点...</p>
-                            <div class="article-tags">
-                                <span>Java</span>
-                                <span>Spring Boot</span>
-                                <span>分布式系统</span>
-                            </div>
-                            <a href="blog-posts/spring-boot-distributed.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
-                        </article>
+                    <div class="category-tabs">
+                        <a href="#" class="category-item active" data-category="all">全部</a>
+                        <a href="#" class="category-item" data-category="java">Java开发</a>
+                        <a href="#" class="category-item" data-category="spring">Spring生态</a>
+                        <a href="#" class="category-item" data-category="redis">Redis应用</a>
+                        <a href="#" class="category-item" data-category="rag">RAG/LLM</a>
+                        <a href="#" class="category-item" data-category="database">数据库优化</a>
+                        <a href="#" class="category-item" data-category="architecture">系统架构</a>
+                    </div>
 
-                        <!-- Article 2 -->
-                        <article class="article-card" data-tags="redis">
-                            <div class="article-img">
-                                <img src="images/blog/redis.jpg" alt="Redis 文章">
-                            </div>
-                            <div class="article-meta">
-                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-09-22</span>
-                                <span class="read-time"><i class="far fa-clock"></i> 8 分钟阅读</span>
-                            </div>
-                            <h2 class="article-title">Redis 缓存穿透、击穿与雪崩问题的解决方案</h2>
-                            <p class="article-excerpt">详细分析Redis在高并发场景下面临的三大问题：缓存穿透、缓存击穿和缓存雪崩，并提供针对性的解决方案与实战示例...</p>
-                            <div class="article-tags">
-                                <span>Redis</span>
-                                <span>缓存</span>
-                                <span>高并发</span>
-                            </div>
-                            <a href="blog-posts/redis-cache-issues.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
-                        </article>
-
-                        <!-- Article 3 -->
-                        <article class="article-card" data-tags="rag">
-                            <div class="article-img">
-                                <img src="images/blog/rag.jpg" alt="RAG 文章">
-                            </div>
-                            <div class="article-meta">
-                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-11-05</span>
-                                <span class="read-time"><i class="far fa-clock"></i> 15 分钟阅读</span>
-                            </div>
-                            <h2 class="article-title">RAG系统在企业知识库中的实践与优化</h2>
-                            <p class="article-excerpt">基于检索增强生成(RAG)技术，如何构建企业内部知识库系统，提升大模型在特定领域的表现，减少幻觉问题...</p>
-                            <div class="article-tags">
-                                <span>RAG</span>
-                                <span>LLM</span>
-                                <span>知识库</span>
-                            </div>
-                            <a href="blog-posts/rag-knowledge-base.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
-                        </article>
-
-                        <!-- Article 4 -->
-                        <article class="article-card" data-tags="java">
-                            <div class="article-img">
-                                <img src="images/blog/java-concurrency.jpg" alt="Java并发 文章">
-                            </div>
-                            <div class="article-meta">
-                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-08-10</span>
-                                <span class="read-time"><i class="far fa-clock"></i> 12 分钟阅读</span>
-                            </div>
-                            <h2 class="article-title">Java并发编程：从JUC到线程池的深入剖析</h2>
-                            <p class="article-excerpt">深入探讨Java并发编程的核心概念，从JUC包的常用工具到自定义线程池的配置与优化，附带实际业务场景案例...</p>
-                            <div class="article-tags">
-                                <span>Java</span>
-                                <span>并发编程</span>
-                                <span>线程池</span>
-                            </div>
-                            <a href="blog-posts/java-concurrency.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
-                        </article>
-
-                        <!-- Article 5 -->
-                        <article class="article-card" data-tags="redis,java">
-                            <div class="article-img">
-                                <img src="images/blog/redis-lock.jpg" alt="Redis分布式锁 文章">
-                            </div>
-                            <div class="article-meta">
-                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-07-20</span>
-                                <span class="read-time"><i class="far fa-clock"></i> 7 分钟阅读</span>
-                            </div>
-                            <h2 class="article-title">使用Redis实现高可靠的分布式锁</h2>
-                            <p class="article-excerpt">分析分布式环境下的并发控制挑战，详解基于Redis的分布式锁实现原理，以及Redisson等工具的应用方法...</p>
-                            <div class="article-tags">
-                                <span>Redis</span>
-                                <span>分布式锁</span>
-                                <span>并发控制</span>
-                            </div>
-                            <a href="blog-posts/redis-distributed-lock.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
-                        </article>
-
-                        <!-- Article 6 -->
-                        <article class="article-card" data-tags="rag">
-                            <div class="article-img">
-                                <img src="images/blog/vector-db.jpg" alt="向量数据库 文章">
-                            </div>
-                            <div class="article-meta">
-                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-12-01</span>
-                                <span class="read-time"><i class="far fa-clock"></i> 9 分钟阅读</span>
-                            </div>
-                            <h2 class="article-title">向量数据库选型对比：Milvus、FAISS与Pinecone</h2>
-                            <p class="article-excerpt">针对RAG系统中的向量存储需求，对比主流向量数据库的性能表现、功能特性与适用场景，辅助技术选型决策...</p>
-                            <div class="article-tags">
-                                <span>向量数据库</span>
-                                <span>RAG</span>
-                                <span>性能对比</span>
-                            </div>
-                            <a href="blog-posts/vector-database-comparison.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
-                        </article>
+                    <!-- 博客文章网格 - 将由JavaScript动态填充 -->
+                    <div class="blog-grid">
+                        <!-- 文章将通过JavaScript动态加载 -->
                     </div>
 
                     <div class="pagination">
@@ -289,6 +184,6 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/tech-blog.js"></script>
+    <script src="admin/js/blog-directory.js"></script>
 </body>
 </html> 
