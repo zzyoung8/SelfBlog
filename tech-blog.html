@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术分享 - YOUNG的个人博客</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tech-blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">YOUNG</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#about">关于我</a></li>
+                    <li><a href="index.html#projects">项目经历</a></li>
+                    <li><a href="tech-blog.html" class="active">技术分享</a></li>
+                    <li><a href="index.html#gallery">生活相册</a></li>
+                    <li><a href="index.html#contact">联系我</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog-hero">
+        <div class="container">
+            <h1 class="blog-title">技术分享</h1>
+            <p class="blog-description">在这里，我会分享技术文档、工程经验以及个人思考。</p>
+        </div>
+    </section>
+
+    <section class="blog-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <main class="articles">
+                    <div class="filter-bar">
+                        <div class="search-box">
+                            <input type="text" id="search-input" placeholder="搜索文章...">
+                            <button id="search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="filter-tags">
+                            <button class="tag active" data-tag="all">全部</button>
+                            <button class="tag" data-tag="java">Java</button>
+                            <button class="tag" data-tag="spring">Spring</button>
+                            <button class="tag" data-tag="redis">Redis</button>
+                            <button class="tag" data-tag="rag">RAG/LLM</button>
+                        </div>
+                    </div>
+
+                    <div class="article-grid">
+                        <!-- Article 1 -->
+                        <article class="article-card" data-tags="java,spring">
+                            <div class="article-img">
+                                <img src="images/blog/spring-boot.jpg" alt="Spring Boot 文章">
+                            </div>
+                            <div class="article-meta">
+                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-10-15</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 10 分钟阅读</span>
+                            </div>
+                            <h2 class="article-title">Spring Boot 实现分布式系统的最佳实践</h2>
+                            <p class="article-excerpt">本文将介绍如何使用Spring Boot构建高性能、可扩展的分布式系统，包括服务注册与发现、负载均衡、熔断机制等关键技术点...</p>
+                            <div class="article-tags">
+                                <span>Java</span>
+                                <span>Spring Boot</span>
+                                <span>分布式系统</span>
+                            </div>
+                            <a href="blog-posts/spring-boot-distributed.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+
+                        <!-- Article 2 -->
+                        <article class="article-card" data-tags="redis">
+                            <div class="article-img">
+                                <img src="images/blog/redis.jpg" alt="Redis 文章">
+                            </div>
+                            <div class="article-meta">
+                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-09-22</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 8 分钟阅读</span>
+                            </div>
+                            <h2 class="article-title">Redis 缓存穿透、击穿与雪崩问题的解决方案</h2>
+                            <p class="article-excerpt">详细分析Redis在高并发场景下面临的三大问题：缓存穿透、缓存击穿和缓存雪崩，并提供针对性的解决方案与实战示例...</p>
+                            <div class="article-tags">
+                                <span>Redis</span>
+                                <span>缓存</span>
+                                <span>高并发</span>
+                            </div>
+                            <a href="blog-posts/redis-cache-issues.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+
+                        <!-- Article 3 -->
+                        <article class="article-card" data-tags="rag">
+                            <div class="article-img">
+                                <img src="images/blog/rag.jpg" alt="RAG 文章">
+                            </div>
+                            <div class="article-meta">
+                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-11-05</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 15 分钟阅读</span>
+                            </div>
+                            <h2 class="article-title">RAG系统在企业知识库中的实践与优化</h2>
+                            <p class="article-excerpt">基于检索增强生成(RAG)技术，如何构建企业内部知识库系统，提升大模型在特定领域的表现，减少幻觉问题...</p>
+                            <div class="article-tags">
+                                <span>RAG</span>
+                                <span>LLM</span>
+                                <span>知识库</span>
+                            </div>
+                            <a href="blog-posts/rag-knowledge-base.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+
+                        <!-- Article 4 -->
+                        <article class="article-card" data-tags="java">
+                            <div class="article-img">
+                                <img src="images/blog/java-concurrency.jpg" alt="Java并发 文章">
+                            </div>
+                            <div class="article-meta">
+                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-08-10</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 12 分钟阅读</span>
+                            </div>
+                            <h2 class="article-title">Java并发编程：从JUC到线程池的深入剖析</h2>
+                            <p class="article-excerpt">深入探讨Java并发编程的核心概念，从JUC包的常用工具到自定义线程池的配置与优化，附带实际业务场景案例...</p>
+                            <div class="article-tags">
+                                <span>Java</span>
+                                <span>并发编程</span>
+                                <span>线程池</span>
+                            </div>
+                            <a href="blog-posts/java-concurrency.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+
+                        <!-- Article 5 -->
+                        <article class="article-card" data-tags="redis,java">
+                            <div class="article-img">
+                                <img src="images/blog/redis-lock.jpg" alt="Redis分布式锁 文章">
+                            </div>
+                            <div class="article-meta">
+                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-07-20</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 7 分钟阅读</span>
+                            </div>
+                            <h2 class="article-title">使用Redis实现高可靠的分布式锁</h2>
+                            <p class="article-excerpt">分析分布式环境下的并发控制挑战，详解基于Redis的分布式锁实现原理，以及Redisson等工具的应用方法...</p>
+                            <div class="article-tags">
+                                <span>Redis</span>
+                                <span>分布式锁</span>
+                                <span>并发控制</span>
+                            </div>
+                            <a href="blog-posts/redis-distributed-lock.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+
+                        <!-- Article 6 -->
+                        <article class="article-card" data-tags="rag">
+                            <div class="article-img">
+                                <img src="images/blog/vector-db.jpg" alt="向量数据库 文章">
+                            </div>
+                            <div class="article-meta">
+                                <span class="date"><i class="far fa-calendar-alt"></i> 2023-12-01</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 9 分钟阅读</span>
+                            </div>
+                            <h2 class="article-title">向量数据库选型对比：Milvus、FAISS与Pinecone</h2>
+                            <p class="article-excerpt">针对RAG系统中的向量存储需求，对比主流向量数据库的性能表现、功能特性与适用场景，辅助技术选型决策...</p>
+                            <div class="article-tags">
+                                <span>向量数据库</span>
+                                <span>RAG</span>
+                                <span>性能对比</span>
+                            </div>
+                            <a href="blog-posts/vector-database-comparison.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+
+                    <div class="pagination">
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span class="pagination-dots">...</span>
+                        <button class="pagination-btn">10</button>
+                        <button class="pagination-btn next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </main>
+
+                <aside class="sidebar">
+                    <div class="widget about-widget">
+                        <h3 class="widget-title">关于我</h3>
+                        <div class="widget-content">
+                            <img src="images/avatar0.jpg" alt="个人头像" class="widget-avatar">
+                            <p>软件工程专业研究生，专注于分布式系统、缓存优化与RAG应用研究，乐于分享技术经验。</p>
+                            <div class="social-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-weixin"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-zhihu"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget categories-widget">
+                        <h3 class="widget-title">文章分类</h3>
+                        <div class="widget-content">
+                            <ul class="category-list">
+                                <li><a href="#" data-category="java">Java开发 <span>(12)</span></a></li>
+                                <li><a href="#" data-category="spring">Spring生态 <span>(9)</span></a></li>
+                                <li><a href="#" data-category="redis">Redis应用 <span>(7)</span></a></li>
+                                <li><a href="#" data-category="rag">RAG/LLM <span>(5)</span></a></li>
+                                <li><a href="#" data-category="database">数据库优化 <span>(6)</span></a></li>
+                                <li><a href="#" data-category="architecture">系统架构 <span>(4)</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="widget popular-posts-widget">
+                        <h3 class="widget-title">热门文章</h3>
+                        <div class="widget-content">
+                            <div class="popular-post">
+                                <a href="blog-posts/redis-cache-issues.html">
+                                    <div class="popular-post-img">
+                                        <img src="images/blog/redis-small.jpg" alt="Redis缓存文章">
+                                    </div>
+                                    <div class="popular-post-info">
+                                        <h4>Redis 缓存穿透、击穿与雪崩问题的解决方案</h4>
+                                        <span class="post-date">2023-09-22</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="popular-post">
+                                <a href="blog-posts/rag-knowledge-base.html">
+                                    <div class="popular-post-img">
+                                        <img src="images/blog/rag-small.jpg" alt="RAG文章">
+                                    </div>
+                                    <div class="popular-post-info">
+                                        <h4>RAG系统在企业知识库中的实践与优化</h4>
+                                        <span class="post-date">2023-11-05</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="popular-post">
+                                <a href="blog-posts/java-concurrency.html">
+                                    <div class="popular-post-img">
+                                        <img src="images/blog/java-small.jpg" alt="Java并发文章">
+                                    </div>
+                                    <div class="popular-post-info">
+                                        <h4>Java并发编程：从JUC到线程池的深入剖析</h4>
+                                        <span class="post-date">2023-08-10</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget tags-widget">
+                        <h3 class="widget-title">标签云</h3>
+                        <div class="widget-content">
+                            <div class="tag-cloud">
+                                <a href="#" class="tag-lg">Java</a>
+                                <a href="#" class="tag-md">Spring Boot</a>
+                                <a href="#" class="tag-sm">MyBatis</a>
+                                <a href="#" class="tag-lg">Redis</a>
+                                <a href="#" class="tag-md">RAG</a>
+                                <a href="#" class="tag-lg">LLM</a>
+                                <a href="#" class="tag-sm">Docker</a>
+                                <a href="#" class="tag-md">微服务</a>
+                                <a href="#" class="tag-sm">RocketMQ</a>
+                                <a href="#" class="tag-md">MySQL</a>
+                                <a href="#" class="tag-sm">JUC</a>
+                                <a href="#" class="tag-md">缓存</a>
+                                <a href="#" class="tag-sm">分布式系统</a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2023 YOUNG的个人博客. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-weixin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-zhihu"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/tech-blog.js"></script>
+</body>
+</html> 

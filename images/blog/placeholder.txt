@@ -1,0 +1,19 @@
+请将以下技术博客相关的图片放置在此目录中：
+
+1. spring-boot.jpg - Spring Boot相关文章封面图
+2. redis.jpg - Redis相关文章封面图
+3. rag.jpg - RAG/LLM相关文章封面图
+4. java-concurrency.jpg - Java并发编程文章封面图
+5. redis-lock.jpg - Redis分布式锁文章封面图
+6. vector-db.jpg - 向量数据库文章封面图
+
+缩略图：
+1. redis-small.jpg - Redis文章缩略图
+2. rag-small.jpg - RAG文章缩略图
+3. java-small.jpg - Java文章缩略图
+
+建议图片尺寸：
+- 文章封面图：1200x675像素（16:9比例）
+- 缩略图：200x200像素（正方形）
+
+注意：所有图片都会自动裁剪适应其容器，但建议使用合适比例的图片以获得最佳效果。 
