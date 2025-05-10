@@ -55,7 +55,7 @@ const HomePage = () => {
         <div className="container">
           <div className="hero-content">
             <div className="hero-image">
-              <img src="/images/avatar0.jpg" alt={`${blogOwner?.name || 'YOUNG'}的头像`} />
+              <img src="/images/avatar0.jpeg" alt={`${blogOwner?.name || 'YOUNG'}的头像`} />
             </div>
             <div className="hero-text">
               <h1>{blogOwner?.name || 'YOUNG'}</h1>
@@ -243,4 +243,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage; 
+export default HomePage;

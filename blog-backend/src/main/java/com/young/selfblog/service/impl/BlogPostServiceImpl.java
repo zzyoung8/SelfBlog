@@ -5,6 +5,7 @@ import com.young.selfblog.dto.CategoryDTO;
 import com.young.selfblog.dto.UserDTO;
 import com.young.selfblog.model.BlogPost;
 import com.young.selfblog.model.Category;
+import com.young.selfblog.model.User;
 import com.young.selfblog.repository.BlogPostRepository;
 import com.young.selfblog.repository.CategoryRepository;
 import com.young.selfblog.service.BlogPostService;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,23 +33,33 @@ public class BlogPostServiceImpl implements BlogPostService {
     }
 
     @Override
-    public BlogPostDTO createPost(BlogPost post) {
+    public BlogPostDTO createPost(BlogPostDTO postDTO) {
+        BlogPost post = convertToEntity(postDTO);
         BlogPost savedPost = blogPostRepository.save(post);
         return convertToDTO(savedPost);
     }
 
     @Override
-    public BlogPostDTO updatePost(Long id, BlogPost post) {
-        BlogPost existingPost = blogPostRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Blog post not found with id: " + id));
+    public BlogPostDTO updatePost(BlogPostDTO postDTO) {
+        BlogPost existingPost = blogPostRepository.findById(postDTO.getId())
+                .orElseThrow(() -> new RuntimeException("Blog post not found with id: " + postDTO.getId()));
         
-        existingPost.setTitle(post.getTitle());
-        existingPost.setExcerpt(post.getExcerpt());
-        existingPost.setContent(post.getContent());
-        existingPost.setCoverImage(post.getCoverImage());
-        existingPost.setCategories(post.getCategories());
-        existingPost.setTags(post.getTags());
-        existingPost.setFeatured(post.isFeatured());
+        existingPost.setTitle(postDTO.getTitle());
+        existingPost.setExcerpt(postDTO.getExcerpt());
+        existingPost.setContent(postDTO.getContent());
+        existingPost.setCoverImage(postDTO.getCoverImage());
+        
+        // 更新分类
+        if (postDTO.getCategories() != null) {
+            List<Category> categories = postDTO.getCategories().stream()
+                    .map(categoryDTO -> categoryRepository.findById(categoryDTO.getId())
+                            .orElseThrow(() -> new RuntimeException("Category not found with id: " + categoryDTO.getId())))
+                    .collect(Collectors.toList());
+            existingPost.setCategories(categories);
+        }
+        
+        existingPost.setTags(postDTO.getTags());
+        existingPost.setFeatured(postDTO.isFeatured());
         
         BlogPost updatedPost = blogPostRepository.save(existingPost);
         return convertToDTO(updatedPost);
@@ -66,7 +78,19 @@ public class BlogPostServiceImpl implements BlogPostService {
     }
 
     @Override
-    public Page<BlogPostDTO> getAllPosts(Pageable pageable) {
+    public Page<BlogPostDTO> getAllPosts(int page, int size, String category, String search) {
+        Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size);
+        
+        if (search != null && !search.isEmpty()) {
+            return searchPosts(search, pageable);
+        }
+        
+        if (category != null && !category.isEmpty()) {
+            Category categoryEntity = categoryRepository.findByName(category)
+                    .orElseThrow(() -> new RuntimeException("Category not found with name: " + category));
+            return getPostsByCategory(categoryEntity.getId(), pageable);
+        }
+        
         return blogPostRepository.findByOrderByPublishedAtDesc(pageable)
                 .map(this::convertToDTO);
     }
@@ -139,7 +163,7 @@ public class BlogPostServiceImpl implements BlogPostService {
                     CategoryDTO categoryDTO = new CategoryDTO();
                     categoryDTO.setId(category.getId());
                     categoryDTO.setName(category.getName());
-                    categoryDTO.setDescription(category.getDescription());
+//                    categoryDTO.setDescription(category.getDescription());
                     categoryDTO.setPostCount(category.getPosts().size());
                     return categoryDTO;
                 })
@@ -154,4 +178,62 @@ public class BlogPostServiceImpl implements BlogPostService {
         
         return dto;
     }
-} 
+    
+    @Override
+    public List<BlogPostDTO> getRelatedPosts(Long postId) {
+        // 获取当前文章
+        BlogPost currentPost = blogPostRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Blog post not found with id: " + postId));
+        
+        // 获取当前文章的分类
+        List<Category> categories = currentPost.getCategories();
+        if (categories.isEmpty()) {
+            return Collections.emptyList();
+        }
+        
+        // 查找同一分类下的其他文章
+        List<BlogPost> relatedPosts = blogPostRepository.findByCategoriesInOrderByPublishedAtDesc(
+                categories, org.springframework.data.domain.PageRequest.of(0, 5))
+                .getContent()
+                .stream()
+                .filter(post -> !post.getId().equals(postId)) // 排除当前文章
+                .limit(5)
+                .collect(Collectors.toList());
+        
+        return relatedPosts.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+    
+    private BlogPost convertToEntity(BlogPostDTO dto) {
+        BlogPost post = new BlogPost();
+        post.setId(dto.getId());
+        post.setTitle(dto.getTitle());
+        post.setExcerpt(dto.getExcerpt());
+        post.setContent(dto.getContent());
+        post.setCoverImage(dto.getCoverImage());
+        
+        // 如果是新建博客文章，需要设置作者
+        if (dto.getAuthor() != null) {
+            User author = new User();
+            author.setId(dto.getAuthor().getId());
+            post.setAuthor(author);
+        }
+        
+        // 设置分类
+        if (dto.getCategories() != null) {
+            List<Category> categories = dto.getCategories().stream()
+                    .map(categoryDTO -> {
+                        return categoryRepository.findById(categoryDTO.getId())
+                                .orElseThrow(() -> new RuntimeException("Category not found with id: " + categoryDTO.getId()));
+                    })
+                    .collect(Collectors.toList());
+            post.setCategories(categories);
+        }
+        
+        post.setTags(dto.getTags());
+        post.setFeatured(dto.isFeatured());
+        
+        return post;
+    }
+}
