@@ -1,60 +1,81 @@
-# 个人博客网站
+# YOUNG 个人博客项目
 
-这是一个使用纯HTML、CSS和JavaScript构建的现代个人博客网站。
-
-## 功能特点
-
-- 响应式设计，适配各种设备
-- 现代化UI界面，具有平滑过渡和动画效果
-- 个人简介展示
-- 项目经历展示
-- 技术博客分享（文章、教程和经验分享）
-- 生活照片展示
-- 联系表单
-- 社交媒体链接
+这是一个使用 Spring Boot 和 React 实现的个人博客网站。
 
 ## 项目结构
 
+- `blog-backend`: Spring Boot 后端项目
+- `blog-frontend`: React 前端项目
+
+## 技术栈
+
+### 后端
+- Spring Boot 3.1.5
+- Spring Data JPA
+- H2 数据库 (开发环境)
+- Maven
+
+### 前端
+- React 18
+- React Router 6
+- Axios
+- CSS3
+
+## 如何运行
+
+### 后端
+
+1. 进入后端项目目录
+```bash
+cd blog-backend
 ```
-├── index.html          # 主页HTML文件
-├── tech-blog.html      # 技术博客页面
-├── blog-posts/         # 博客文章页面目录
-│   └── *.html          # 各博客文章页面
-├── css/
-│   ├── style.css       # 主要样式文件
-│   ├── tech-blog.css   # 技术博客页面样式
-│   └── blog-post.css   # 博客文章页面样式
-├── js/
-│   ├── main.js         # 主要JavaScript脚本
-│   └── tech-blog.js    # 技术博客页面脚本
-└── images/             # 图片文件夹
-    ├── blog/           # 博客相关图片
-    └── ...             # 其他图片
+
+2. 使用 Maven 构建项目
+```bash
+mvn clean install
 ```
 
-## 使用方法
+3. 运行 Spring Boot 应用
+```bash
+mvn spring-boot:run
+```
 
-1. 克隆或下载此仓库
-2. 打开`index.html`文件查看主页
-3. 打开`tech-blog.html`文件查看技术博客列表
-4. 将您自己的图片添加到`images`文件夹中
-5. 根据需要修改HTML内容和CSS样式
+后端服务器将在 http://localhost:8080 上启动。
 
-## 添加新博客文章
+### 前端
 
-1. 在`blog-posts`文件夹中创建新的HTML文件
-2. 使用`blog-posts/redis-cache-issues.html`作为模板
-3. 修改文章内容、标题、标签等信息
-4. 在`tech-blog.html`页面的文章列表中添加新文章的链接
+1. 进入前端项目目录
+```bash
+cd blog-frontend
+```
 
-## 未来计划
+2. 安装依赖
+```bash
+npm install
+```
 
-- 前端迁移到React框架
-- 后端使用Spring框架实现
-- 添加用户评论系统
-- 实现文章搜索和筛选功能
-- 集成Markdown编辑器
+3. 启动开发服务器
+```bash
+npm start
+```
 
-## 注意事项
+前端应用将在 http://localhost:3000 上启动。
 
-本项目中的示例图片需要您自己提供，请将您的照片和项目图片放置到`images`文件夹中，并相应地更新HTML文件中的路径。 
+## 功能特性
+
+- 响应式设计，适配各种设备
+- 个人信息展示
+- 博客文章列表和详情页
+- 按类别筛选文章
+- 文章搜索功能
+- 联系表单
+
+## 开发进度
+
+- [x] 项目初始化
+- [x] 后端 API 设计
+- [x] 数据库模型设计
+- [x] 个人主页实现
+- [ ] 博客文章列表页
+- [ ] 博客文章详情页
+- [ ] 管理后台 
